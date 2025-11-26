@@ -1,5 +1,14 @@
-FROM openjdk:17
-COPY target/spring-boot-mysql.jar /usr/app/spring-boot-mysql.jar
+# Use a valid OpenJDK 17 image
+FROM openjdk:17-jdk-slim
+
+# Set working directory
 WORKDIR /usr/app/
+
+# Copy your Spring Boot JAR into the container
+COPY target/spring-boot-mysql.jar spring-boot-mysql.jar
+
+# Expose port 8080
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","spring-boot-mysql.jar"]
+
+# Run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "spring-boot-mysql.jar"]
